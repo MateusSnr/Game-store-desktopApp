@@ -92,7 +92,7 @@ struct infos{
 		}
 	}
 
-//Função Listar Pedidos ja efetuados anteriormente.
+//Funcao Listar Pedidos ja efetuados anteriormente.
 
 	int ListarPedidos(){
 		char FraseInicial[1000];
