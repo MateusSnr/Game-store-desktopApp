@@ -4,6 +4,8 @@
 #include<stdio.h>
 #include<string.h>
 
+//Estrutura com seus devidos tributos.
+
 struct infos{
 	int codigo;
 	char produto[15];
@@ -11,15 +13,21 @@ struct infos{
 	float valor;
 	float total;
 	
+//Metodo construtor.
+	
 	infos(int qtd,float value){
 		quantidade = qtd;
 		valor = value;
 	}
 	
+//Metodo da estrutura.
+	
 	void Totaliza(){
 		float calc;
 		
 		total = quantidade*valor;
+
+//Aplicacao de desconto para pedidos acima de 5 produtos.
 		
 		if(quantidade>=5){
 			calc = (total/100)*5;
@@ -27,11 +35,13 @@ struct infos{
 		}
 	}
 };
+
+//Funcao Efetuar Pedido.
 	
 	int EfetuarPedido(){
 		int codigoV;
 		
-		char prod[15];
+		char produtoA[15];
 		
 		float valorA;
 		
@@ -42,15 +52,17 @@ struct infos{
 		printf("\nDigite o codigo do produto: ");
 		scanf("%d",&codigoV);
 		
+//Abertura do arquivo para consulta do codigo do produto e gravacao do pedido.
+		
 		FILE *fp;
 		
 		fp = fopen("F:\\SEMESTRE1\\P2-1Semestre - C++\\produtos.txt","r");
 		
 		while(!feof(fp)){
-			fscanf(fp,"%d %s %f", &codigoA, &prod, &valorA);
+			fscanf(fp,"%d %s %f", &codigoA, &produtoA, &valorA);
 			if(codigoA == codigoV){
 				itens.codigo = codigoA;
-				strcpy(itens.produto,prod);
+				strcpy(itens.produto,produtoA);
 				itens.valor = valorA;
 				
 				printf("\nQuantidade de itens comprados: ");
@@ -79,8 +91,11 @@ struct infos{
 			}
 		}
 	}
+
+//Função Listar Pedidos ja efetuados anteriormente.
+
 	int ListarPedidos(){
-		char textao[1000];
+		char FraseInicial[1000];
 		
 		int CodigoL,QuantidadeL;
 		float TotalL;float ValorL;
@@ -99,8 +114,8 @@ struct infos{
 		else{
 			while(!feof(tp)){
 				if(cont <= 4){
-					fscanf(tp,"%s",&textao);
-					printf("\t%s\t",textao);
+					fscanf(tp,"%s",&FraseInicial);
+					printf("\t%s\t",FraseInicial);
 					cont++;
 				}
 				else{
@@ -111,6 +126,8 @@ struct infos{
 		}
 	}
 }
+
+//Funcao Listar Produtos.
 
 	int ListarProdutos(){
 		
